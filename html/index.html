@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Job UI</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: transparent
+        }
+
+
+        .job {
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #000000, #ffffff);
+    padding: 8px 15px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-size: 16px; 
+    font-weight: bold;
+    z-index: 1000;
+    backdrop-filter: none;
+}
+
+.job h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+    margin: 0;
+}
+
+.job:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130%;
+    height: 130%;
+    background: url('https://www.transparenttextures.com/patterns/asfalt-light.png') repeat;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.job span {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+
+    </style>
+</head>
+    <div class="job">
+        <h3 id="job-name">Job :  | Id : </h3>
+    </div>
+
+    <script>
+
+        window.addEventListener('message', (event) => {
+            if (event.data.action === 'update') {
+                document.getElementById('job-name').innerText = "Job : " + event.data.job + " | ID : " + event.data.id
+            }
+        })
+
+    </script>
+
+
+</body>
+</html>
